@@ -20,12 +20,14 @@
 
                 <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
                 <ul :class="state.showMenu ? 'flex' : 'hidden'" class=" flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0">
-                    <router-link to="/" class="text-sm font-bold text-purple-100 hover:text-purple-400 cursor-pointer ">Home</router-link>
-                    <router-link to="/todo-task" class="text-sm font-bold text-purple-100 hover:text-purple-400 cursor-pointer">Todo Task</router-link>
-                    <router-link to="/archived-task" class="text-sm font-bold text-purple-100 hover:text-purple-400 cursor-pointer">Archived Tasks</router-link>
-                    <router-link to="/completed-task" class="text-sm font-bold text-purple-100 hover:text-purple-400 cursor-pointer">Completed Tasks</router-link>
+                    <template v-if="authenticated">
+                        <router-link to="/" class="text-sm font-bold text-purple-100 hover:text-purple-400 cursor-pointer ">Home</router-link>
+                        <router-link to="/todo-task" class="text-sm font-bold text-purple-100 hover:text-purple-400 cursor-pointer">Todo Task</router-link>
+                        <router-link to="/archived-task" class="text-sm font-bold text-purple-100 hover:text-purple-400 cursor-pointer">Archived Tasks</router-link>
+                        <router-link to="/completed-task" class="text-sm font-bold text-purple-100 hover:text-purple-400 cursor-pointer">Completed Tasks</router-link>
+                        <button type="button" @click="logout" class="text-sm text-left font-bold text-purple-100 hover:text-purple-400 cursor-pointer">Logout</button>
+                    </template>
                     <router-link to="/login" class="text-sm font-bold text-purple-100 hover:text-purple-400 cursor-pointer" v-if="!authenticated">Login</router-link>
-                    <button type="button" @click="logout" class="text-sm text-left font-bold text-purple-100 hover:text-purple-400 cursor-pointer">Logout</button>
                 </ul>
             </nav>
         </div>

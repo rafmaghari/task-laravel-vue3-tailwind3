@@ -7,6 +7,7 @@
    - change db credentials
    - php artisan migrate
    - php artisan db:seed (create a user that has 20 tasks)
+   - change the APP_URL to your url in local (to prevent CORS error)
 
 ### Installation Vue Js
    - npm install
