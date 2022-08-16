@@ -25,23 +25,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::group(['prefix' => 'auth', 'namespace' => 'Api'], function () {
-    Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
 
     Route::group(['middleware' => 'auth:sanctum'], function () {
-        Route::post('logout',    [AuthController::class, 'logout']);
+        Route::post('logout',    [AuthController::class, 'logout'])->name('logout');
     });
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('tasks/upload-file/{task}',  [TaskAttachmentController::class, 'uploadFile']);
 
-
     Route::get('file-download/{path}',  [TaskAttachmentController::class, 'downloadFile']);
 
-    Route::put('tasks/toggle-archived/{task}',  [TaskController::class, 'toggleArchived']);
-    Route::put('tasks/update-status/{task}',  [TaskController::class, 'updateTaskStatus']);
-    Route::put('tasks/update-due-date/{task}',  [TaskController::class, 'updateDueDate']);
+    Route::put('tasks/toggle-archived/{task}',  [TaskController::class, 'toggleArchived'])->name('update.archived');
+    Route::put('tasks/update-status/{task}',  [TaskController::class, 'updateTaskStatus'])->name('update.status');
+    Route::put('tasks/update-due-date/{task}',  [TaskController::class, 'updateDueDate'])->name('update.due_date');
     Route::post('tasks/list',  [TaskController::class, 'list']);
     Route::apiResource('tasks/tags',  TaskTagController::class);
     Route::apiResource('tasks',  TaskController::class);

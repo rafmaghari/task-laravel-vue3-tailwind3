@@ -12,4 +12,7 @@
 ### Installation Vue Js
    - npm install
    - npm run dev
-    
+
+### Testing
+   - npm run build (to produce vite manifest)
+   - php artisan test
